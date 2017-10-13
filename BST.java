@@ -19,8 +19,9 @@ public class BST<Key extends Comparable<Key>, Value> {
 			this.N = N;
 		}
 	}
+	//find the lowest common ancestor of two nodes 
 	public Node LCA(Node root, Node a, Node b) {
-		   if (root == null) {
+		   if ((root == null) ||( a==null)||(b==null)) {
 		       return null;
 		   }
 
@@ -75,6 +76,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 	private Node get(Node x, Key key) {
 		if (x == null) return null;
+	
 		int cmp = key.compareTo(x.key);
 		if      (cmp < 0) return get(x.left, key);
 		else if (cmp > 0) return get(x.right, key);
