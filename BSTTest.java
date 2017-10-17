@@ -20,7 +20,7 @@ public class BSTTest {
 		
 		return bst;
 	}
-
+	//test that LCA() is returning correct nodes
 	@Test
 	public void testSimple() {
 		
@@ -31,22 +31,27 @@ public class BSTTest {
 
 
 	}
+	//testing nodes that dont exist 
 	@Test
 	public void testNullNode(){
 		BST<Integer, Integer> bst = newBST();
 		
-		assertEquals(null, bst.LCA(bst.get(7), bst.get(3), bst.get(22))); //testing out of bounds node
+		assertEquals(null, bst.LCA(bst.get(7), bst.get(3), bst.get(22))); 
 	}
-	
+	//testing a root that does not exist 
 	@Test 
 	public void testNullRoot(){
-		BST <Integer, Integer> bst = new BST <Integer, Integer>();
+		BST <Integer, Integer> bst = newBST();
 		
-		bst.put(null, null);
-		bst.put(1, 1);
-		bst.put(3, 2);
+		assertEquals(null, bst.LCA(bst.get(0), bst.get(1),bst.get(3) ));
+	}
+	//Test if one of the nodes is root LCA shout be root
+	@Test 
+	public void testRootNode(){
+		BST <Integer, Integer> bst = newBST();
 		
-		assertEquals(null, bst.LCA(bst.get(2), bst.get(1),bst.get(3) ));
+		assertEquals(bst.get(7), bst.LCA(bst.get(7), bst.get(7), bst.get(1)));
+		
 	}
 
 }
