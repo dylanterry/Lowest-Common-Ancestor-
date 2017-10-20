@@ -1,6 +1,7 @@
 
 import java.util.NoSuchElementException;
 
+
 public class BST<Key extends Comparable<Key>, Value> {
 	private Node root;             // root of BST
 
@@ -65,13 +66,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 		return get(key) != null;
 	}
 
-	/**
-	 *  Search BST for given key.
-	 *  What is the value associated with given key?
-	 *
-	 *  @param key the search key
-	 *  @return value associated with the given key if found, or null if no such key exists.
-	 */
+	//return a given node by its key
 	public Node get(Key key) { return get(root, key); }
 
 	private Node get(Node x, Key key) {
@@ -81,6 +76,17 @@ public class BST<Key extends Comparable<Key>, Value> {
 		if      (cmp < 0) return get(x.left, key);
 		else if (cmp > 0) return get(x.right, key);
 		else              return x;
+	}
+	
+	//return the value within a given node
+	public Value getValue(Key key) { return getValue(root, key); }
+
+	private Value getValue(Node x, Key key) {
+		if (x == null) return null;
+		int cmp = key.compareTo(x.key);
+		if      (cmp < 0) return getValue(x.left, key);
+		else if (cmp > 0) return getValue(x.right, key);
+		else              return x.val;
 	}
 
 	/**

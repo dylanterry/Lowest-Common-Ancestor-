@@ -72,5 +72,23 @@ public class BSTTest {
 		
 		bst.contains(1);
 	}
+	@Test 
+	public void testGet(){
+		BST<Integer, Integer> bst = new BST<Integer, Integer>();
+		bst.put(7, 7);   //        _7_
+		bst.put(8, 8);   //      /     \
+		bst.put(3, 3);   //    _3_      8
+		bst.put(1, 1);   //  /     \
+		bst.put(2, 2);   // 1       6
+		bst.put(6, 6);   //  \     /
+		bst.put(4, 4);   //   2   4
+		bst.put(5, 5);   //        \
+						//         5
+		assertEquals(Integer.valueOf(6),bst.getValue(6));
+		assertEquals(Integer.valueOf(8),bst.getValue(8));
+
+		assertEquals(null,bst.getValue(22));
+
+	}
 	
 }
