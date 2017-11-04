@@ -3,25 +3,41 @@ import java.util.Stack;
 
 public class DAG <Value> {
 	
-	
 	private class Node {
-		private Node [] sucessors;
-		private Value value;
+		int data;
+		Node left, right;
+		ArrayList<Node> listNodes;
+		int count;
 		
-		public Node ( Value value){
-			this.value = value;
+		public Node ( int value){
+			data = value;
+			listNodes = new ArrayList<Node>();
+			count=0;
+			left = null;
+			right=null;
 		}
+		public void addEdge (Node x){
+			listNodes.add(x);
+			count++;
+		}
+		public boolean EdgeExist(Node x){
+			return x.listNodes.contains(this);
+		}
+		public int noEdges(){
+			return count;
+		}
+		
 	}
 	private Node root;
 	
-	private ArrayList <Node> DFS (Node node, Node target, ArrayList <Node> list, Stack <Node> stack){
+	private ArrayList <Node> add (Node node, Node target, ArrayList <Node> list, Stack <Node> stack){
 		stack.push(node);
-		for (Node theNode:node.nodeList){
-			if (theNode.equals(target)){
+		for (Node nextNode:node.listNodes){
+			if (nextNode.equals(target)){
 				list.addAll(stack);
 				return list;
 			}
-			DFS(theNode, target, list, stack);
+			add(nextNode, target, list, stack);
 		}
 		stack.pop();
 		return list;
