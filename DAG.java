@@ -3,31 +3,7 @@ import java.util.Stack;
 
 public class DAG <Value> {
 	
-	private class Node {
-		int data;
-		Node left, right;
-		ArrayList<Node> listNodes;
-		int count;
-		
-		public Node ( int value){
-			data = value;
-			listNodes = new ArrayList<Node>();
-			count=0;
-			left = null;
-			right=null;
-		}
-		public void addEdge (Node x){
-			listNodes.add(x);
-			count++;
-		}
-		public boolean EdgeExist(Node x){
-			return x.listNodes.contains(this);
-		}
-		public int noEdges(){
-			return count;
-		}
-		
-	}
+	
 	private Node root;
 	
 	private ArrayList <Node> add (Node node, Node target, ArrayList <Node> list, Stack <Node> stack){
@@ -41,6 +17,13 @@ public class DAG <Value> {
 		}
 		stack.pop();
 		return list;
+	}
+	
+	public void setRoot(Node node){
+		this.root=node;
+	}
+	public Node getRoot(){
+		return this.root;
 	}
 	
 	
