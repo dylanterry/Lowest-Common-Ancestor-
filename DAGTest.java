@@ -29,6 +29,38 @@ public class DAGTest {
 	        array.get(7).addEdge(array.get(9));
 	        
 	    }
+	 //Test LCA returns correct node 
+	 @Test
+	 public void testLCA(){
+		 assertEquals(array.get(2), dag1.LCA(array.get(8), array.get(5)));
+		 assertEquals(array.get(0), dag1.LCA(array.get(1), array.get(8)));
+		 assertEquals(array.get(2), dag1.LCA(array.get(9), array.get(4)));
+
+	 }
+	 //Test a DAG with one node, should return null
+	 @Test
+	 public void TestLCA1Node(){
+		 DAG<Node> dag2 = new DAG<Node>();
+	     ArrayList<Node> array = new ArrayList<>();
+	     array.add(new Node(1));
+	     assertNull(dag2.LCA(array.get(0), array.get(0)));
+	 }
+	 //test we have correct number of edges in DAG
+	 @Test
+	 public void testNoEdges (){
+		 int count=0;
+		 for (int i=0; i<array.size();i++){
+			 count=count+array.get(i).noEdges();
+		 }
+		 assertEquals(12,count);
+	 }
+	 //Test data from node is returned coorectly from LCA
+	 @Test
+	 public void testDataReturned(){
+		 assertEquals(array.get(2).data, dag1.LCA(array.get(8), array.get(5)).data);
+		 assertEquals(array.get(2).data, dag1.LCA(array.get(9), array.get(4)).data);
+	 }
+	
 	
 	
 
